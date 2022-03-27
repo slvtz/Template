@@ -93,6 +93,20 @@ game.Players.LocalPlayer.Chatted:Connect(function(cht)
     end
 end)
 
+local mt = getrawmetatable(game)
+local backup = mt.__namecall
+if setreadonly then setreadonly(mt, false) else make_writeable(mt, true) end
+
+mt.__namecall = newcclosure(function(...)
+    local method = getnamecallmethod()
+    local args = {...}
+
+    if tostring(args[1]) == 'SayMessageRequest' and then
+    return
+    end
+    return backup(...)
+end)
+
 spawn(function()
     repeat wait()
         for _,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
