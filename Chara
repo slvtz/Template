@@ -101,7 +101,7 @@ mt.__namecall = newcclosure(function(...)
     local method = getnamecallmethod()
     local args = {...}
 
-    if tostring(args[1]) == 'SayMessageRequest' and then
+    if tostring(args[1]) == 'SayMessageRequest' then
     return
     end
     return backup(...)
